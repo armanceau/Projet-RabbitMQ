@@ -1,30 +1,38 @@
-import connection_rabbitmq from "../utils/connection_rabbitmq";
+const amqplib = require('amqplib');
+require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
+
+const rabbitmq_url = process.env.RABBITMQ_URL;
 
 async function AddWorker() {
-  const channel = await connection_rabbitmq();
+  const conn =  await amqplib.connect(rabbitmq_url);
+  const channel = await conn.createChannel();
+
   const queue_requete = "queue_add";
   const queue_resultat = "queue_result";
   const exchange = "narg_exchange";
 
   try {
-
+    // Exchange durable
     await channel.assertExchange(exchange, "topic", { durable: true });
+    // Queue durable
     await channel.assertQueue(queue_requete, { durable: true });
+    // Binding avec routing key qui correspond au producer
     await channel.bindQueue(queue_requete, exchange, "operation.add");
 
     await channel.assertQueue(queue_resultat, { durable: true });
 
-    // ecoute la file rabbitmq et reagit a chaque message recue
     channel.consume(queue_requete, async (message) => {
       if (message != null) {
         const content = JSON.parse(message.content.toString());
-        const { n1, n2 } = content;
+        let { n1, n2 } = content;
+
+        n1 = Number(n1);
+        n2 = Number(n2);
+
         console.log(`Calcul de ${n1} + ${n2}`);
 
         const randomDelay = Math.floor(Math.random() * 10000) + 5000;
-        console.log(
-          `Délai avant de renvoyer le résultat: ${randomDelay / 1000} secondes`
-        );
+        console.log(`Délai avant de renvoyer le résultat: ${randomDelay / 1000} secondes`);
 
         await new Promise((resolve) => setTimeout(resolve, randomDelay));
 
@@ -55,4 +63,4 @@ async function AddWorker() {
   }
 }
 
-export default AddWorker;
+AddWorker();
