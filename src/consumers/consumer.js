@@ -1,5 +1,5 @@
 const amqplib = require('amqplib');
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
 
 const rabbitmq_url = process.env.RABBITMQ_URL
 
@@ -28,7 +28,7 @@ async function receive() {
                 }
             } catch (err) {
                 console.error("❌ Erreur de parsing JSON:", err);
-            }
+            } 
             channel.ack(message);
         });
 
