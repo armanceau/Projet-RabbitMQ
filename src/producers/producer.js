@@ -7,6 +7,7 @@ const queue_add = "queue_add";
 const queue_sub = "queue_sub";
 const queue_mul = "queue_mul";
 const queue_div = "queue_div";
+const queue_all = "queue_all";
 
 let calculation_ref;
 let n1_ref;
@@ -32,11 +33,13 @@ async function send() {
     await channel.assertQueue(queue_sub, { durable: true });
     await channel.assertQueue(queue_mul, { durable: true });
     await channel.assertQueue(queue_div, { durable: true });
+    await channel.assertQueue(queue_all, { durable: true });
 
     await channel.bindQueue(queue_add, exchange_name, "operation.add");
     await channel.bindQueue(queue_sub, exchange_name, "operation.sub");
     await channel.bindQueue(queue_mul, exchange_name, "operation.mul");
     await channel.bindQueue(queue_div, exchange_name, "operation.div");
+    await channel.bindQueue(queue_div, exchange_name, "operation.all");
 
     const correlationId = Math.random().toString(16).slice(2);
     const message_content = JSON.stringify({ n1: n1_ref, n2: n2_ref, correlationId });
