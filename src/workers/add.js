@@ -2,7 +2,7 @@ import connection_rabbitmq from "../utils/connection_rabbitmq";
 
 async function AddWorker() {
   const channel = await connection_rabbitmq();
-  const queue_requete = "operation_queue_add";
+  const queue_requete = "queue_add";
   const queue_resultat = "queue_result";
   const exchange = "narg_exchange";
 
