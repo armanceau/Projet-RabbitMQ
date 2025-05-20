@@ -1,8 +1,8 @@
 const amqplib = require('amqplib');
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
 
 calcul_choices = ["add", "sub", "mul", "div"]
-const exchange_name = "narg_exchange"
+const exchange_name = "exchange_topic"
 const queue_add = "queue_add"
 const queue_sub = "queue_sub"
 const queue_mul = "queue_mul"
@@ -25,7 +25,6 @@ if (process.argv[2] && process.argv[3] && process.argv[4]) {
 
 async function send() {
     const conn = await amqplib.connect(process.env.RABBITMQ_URL);
-    console.log(process.env.RABBITMQ_URL)
     const channel = await conn.createChannel();
 
     //création de l'exchange topic
@@ -41,8 +40,6 @@ async function send() {
     channel.publish(exchange_name, calculation_ref, Buffer.from(message_content), {correlationId})
 
     console.log(`[✓] Message publié sous "${calculation_ref}" => ${message_content}`);
-
-
-    //await channel.bindQueue(queue_first, exchange, 'first')
 }
+
 send();
