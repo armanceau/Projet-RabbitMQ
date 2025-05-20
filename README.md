@@ -1,2 +1,2 @@
 # Projet-RabbitMQ
-Projet final du courrs de RabbitMQ
+Projet final du cours de RabbitMQ
