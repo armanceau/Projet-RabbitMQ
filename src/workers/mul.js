@@ -1,7 +1,7 @@
 import connection_rabbitmq from "../utils/connection_rabbitmq";
 async function MulWorker() {
   const channel = await connection_rabbitmq();
-  const queue_requete = "operationQueueMul";
+  const queue_requete = "operation_queue_mul";
   const queue_resultat = "queue_result";
   const exchange = "narg_exchange";
 
