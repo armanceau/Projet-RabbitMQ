@@ -26,16 +26,13 @@ async function send() {
     const conn = await amqplib.connect(process.env.RABBITMQ_URL);
     const channel = await conn.createChannel();
 
-    // Création de l'exchange topic (durable true)
     await channel.assertExchange(exchange_name, 'topic', { durable: true });
 
-    // Création des queues (durable true)
     await channel.assertQueue(queue_add, { durable: true });
     await channel.assertQueue(queue_sub, { durable: true });
     await channel.assertQueue(queue_mul, { durable: true });
     await channel.assertQueue(queue_div, { durable: true });
 
-    // Bind queues (à faire si pas déjà faits, ou sinon dans le worker)
     await channel.bindQueue(queue_add, exchange_name, "operation.add");
     await channel.bindQueue(queue_sub, exchange_name, "operation.sub");
     await channel.bindQueue(queue_mul, exchange_name, "operation.mul");
@@ -44,7 +41,6 @@ async function send() {
     const correlationId = Math.random().toString(16).slice(2);
     const message_content = JSON.stringify({ n1: n1_ref, n2: n2_ref, correlationId });
 
-    // Publier avec routing key harmonisée
     const routingKey = `operation.${calculation_ref}`;
 
     channel.publish(exchange_name, routingKey, Buffer.from(message_content), { correlationId });

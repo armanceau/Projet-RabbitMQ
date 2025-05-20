@@ -12,11 +12,8 @@ async function AddWorker() {
   const exchange = "narg_exchange";
 
   try {
-    // Exchange durable
     await channel.assertExchange(exchange, "topic", { durable: true });
-    // Queue durable
     await channel.assertQueue(queue_requete, { durable: true });
-    // Binding avec routing key qui correspond au producer
     await channel.bindQueue(queue_requete, exchange, "operation.add");
 
     await channel.assertQueue(queue_resultat, { durable: true });
