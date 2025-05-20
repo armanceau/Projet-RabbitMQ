@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Résultats en direct</title>
+  </head>
+  <body>
+    <h1>🧮 Résultats des calculs :</h1>
+    <ul id="results"></ul>
+
+    <script>
+      console.log("💡 Script WebSocket chargé");
+
+      const socket = new WebSocket("ws://localhost:8080");
+
+      socket.onopen = () => {
+        console.log("✅ WebSocket connecté");
+      };
+
+      socket.onmessage = (event) => {
+        console.log("📨 Nouveau message :", event.data);
+        const li = document.createElement("li");
+        li.textContent = event.data;
+        document.getElementById("results").appendChild(li);
+      };
+
+      socket.onerror = (err) => {
+        console.error("❌ WebSocket error:", err);
+      };
+    </script>
+  </body>
+</html>
