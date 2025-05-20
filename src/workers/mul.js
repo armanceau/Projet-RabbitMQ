@@ -37,7 +37,7 @@ async function MulWorker() {
       );
       channel.ack(message);
     }
-    console.log("Le Worker à fait son taff");
+    console.log("Le Worker a fait son travail et envoyé le résultat.");
   });
 }
 export default MulWorker;
