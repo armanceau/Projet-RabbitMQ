@@ -7,6 +7,7 @@ Projet final du cours de RabbitMQ
 - [🎯 Objectif du projet](#-objectif-du-projet)
 - [🏙️ Architecture du projet](#-architecture-du-projet)
 - [💡 Technologies utilisées](#-technologies-utilisées)
+- [🔩 Configuration](#-configuration)
 - [Choix 1 : Initialisation du projet avec docker](#choix-1--initialisation-du-projet-avec-docker)
 - [Choix 2 : Initialisation du projet](#choix-2--initialisation-du-projet)
 - [🛠️ Utilisation](#-utilisation)
@@ -46,11 +47,21 @@ Notre projet se divise en 3 types de composants :
 - **amqplib** — Bibliothèque Node.js pour interagir avec RabbitMQ
 - Websocket
 - Express
+ 
+
+## 🔩 Configuration 
+
+Créez un fichier `.env` à la racine du projet avec vos informations de connexion à RabbitMQ et un mot de passe afin de pouvoir lancer les commandes dans le terminal :
+
+```cmd
+RABBITMQ_URL=amqp://exemple:exemple@hotsname.vhost:port
+```
+_Vous pouvez prendre exemple sur `.env.example`_
+
 
 ## Choix 1 : Initialisation du projet avec docker
 ``` cmd 
 cd  projet-rabbitmq
-docker build ./
 docker compose -f Docker/docker-compose.yml up --build
 ```
 
@@ -59,15 +70,6 @@ docker compose -f Docker/docker-compose.yml up --build
 cd projet-rabbitmq
 npm i 
 ```
-
-### Configuration 
-
-Créez un fichier `.env` à la racine du projet avec vos informations de connexion à RabbitMQ et un mot de passe afin de pouvoir lancer les commandes dans le terminal :
-
-```cmd
-RABBITMQ_URL=amqp://exemple:exemple@hotsname.vhost:port
-```
-_Vous pouvez prendre exemple sur `.env.example`_
 
 ### Avec le frontend 
 _Afin d'utiliser le frontend, nous allons laisser de côté le `producer.js` nous allons à la place utiliser `api.js`._
