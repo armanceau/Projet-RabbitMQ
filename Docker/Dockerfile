@@ -7,4 +7,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["node", "src/producers/producer.js", "add", "2", "5"]
+CMD ["node", "src/producers/producer.js", "add"]

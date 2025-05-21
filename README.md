@@ -1,6 +1,17 @@
 # Projet-RabbitMQ
 Projet final du cours de RabbitMQ
 
+## Sommaire
+
+- [Présentation du projet](#présentation-du-projet)
+- [🎯 Objectif du projet](#-objectif-du-projet)
+- [🏙️ Architecture du projet](#-architecture-du-projet)
+- [💡 Technologies utilisées](#-technologies-utilisées)
+- [Choix 1 : Initialisation du projet avec docker](#choix-1--initialisation-du-projet-avec-docker)
+- [Choix 2 : Initialisation du projet](#choix-2--initialisation-du-projet)
+- [🛠️ Utilisation](#-utilisation)
+- [✨ Fonctionnalités implémentées](#-fonctionnalités-implémentées)
+- [🧑‍💻 Contributeurs](#-contributeurs)
 
 ## Présentation du projet
 
@@ -10,7 +21,7 @@ Chaque fournisseur est invité à proposer une preuve de concept sous forme d’
 
 Ce projet repond ainsi à cette demande.
 
-## Objectif du projet 
+## 🎯 Objectif du projet 
 
 L'objectif de ce projet est : 
 - Distribuer des tâches de calculs (all,add, div, mul, sub) via RabbitMQ
@@ -18,7 +29,7 @@ L'objectif de ce projet est :
 - Exécuter les calculs de manière distribuée
 - Récupérer et afficher les résultats dans une interface simple.
 
-## Architecture du projet 
+## 🏙 Architecture du projet 
 
 Notre projet se divise en 3 types de composants : 
 
@@ -28,7 +39,7 @@ Notre projet se divise en 3 types de composants :
 
 ![alt text](./img/architecture.png)
 
-## Technologies utilisées 
+## 💡 Technologies utilisées 
 
 - **RabbitMQ** — Système de gestion de files de messages (AMQP)
 - **Node.js** — Environnement d'exécution JavaScript côté serveur
@@ -36,9 +47,10 @@ Notre projet se divise en 3 types de composants :
 - Websocket
 - Express
 
-## Choix 1 : Initialisation du projet avec docker :
+## Choix 1 : Initialisation du projet avec docker
 ``` cmd 
-cd  projet-rabbitmq 
+cd  projet-rabbitmq
+docker build ./
 docker compose -f Docker/docker-compose.yml up --build
 ```
 
@@ -47,6 +59,15 @@ docker compose -f Docker/docker-compose.yml up --build
 cd projet-rabbitmq
 npm i 
 ```
+
+### Configuration 
+
+Créez un fichier `.env` à la racine du projet avec vos informations de connexion à RabbitMQ et un mot de passe afin de pouvoir lancer les commandes dans le terminal :
+
+```cmd
+RABBITMQ_URL=amqp://exemple:exemple@hotsname.vhost:port
+```
+_Vous pouvez prendre exemple sur `.env.example`_
 
 ### Avec le frontend 
 _Afin d'utiliser le frontend, nous allons laisser de côté le `producer.js` nous allons à la place utiliser `api.js`._
@@ -83,7 +104,6 @@ Lancer chaque worker :
 - [x] Multiplication (mul) node mul.js,
 - [x] Tous les workers (all) node all.js,
 
-
 ### Lancer le consumer : 
 ```cmd
 cd src
@@ -91,23 +111,13 @@ cd consumers
 node consumer.js
 ```
 
-### Configuration 
-
-Créez un fichier `.env` à la racine du projet avec vos informations de connexion à RabbitMQ et un mot de passe afin de pouvoir lancer les commandes dans le terminal :
-
-```cmd
-RABBITMQ_URL=amqp://exemple:exemple@hotsname.vhost:port
-```
-_Vous pouvez prendre exemple sur `.env.example`_
-
-
 ### Affichage sur le navigateur :
 Accéder à l’affichage des résultats, aller sur l’url suivante :
 http://localhost:3000/
 
 ![alt text](./img/screen_front.png)
 
-## Utilisation 
+## 🛠 Utilisation
 
 Une fois le système en place et tous les composants démarrés :
 
@@ -129,7 +139,7 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 
 Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 
-## ✨ Fonctionnalités implémentées*
+## ✨ Fonctionnalités implémentées
 
 ### Fonctionnalités de base
 
@@ -153,7 +163,7 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 ✅ Affichage du formulaire de calcul
 ✅ Affichage du résultat de l'opération
 
-## Contribueurs
+## 🧑‍💻 Contributeurs
 - MANCEAU Arthur
 - BESROUR Rayane
 - KTOURZA Noemie
