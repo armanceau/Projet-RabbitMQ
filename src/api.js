@@ -12,7 +12,6 @@ const exchange_name = "narg_exchange";
 
 app.use(express.json());
 app.use(express.static("public"));
-
 app.post("/api/send-operation", async (req, res) => {
   const { n1, n2, operation } = req.body;
 
@@ -28,11 +27,32 @@ app.post("/api/send-operation", async (req, res) => {
 
     const correlationId = Math.random().toString(16).slice(2);
     const message_content = JSON.stringify({ n1, n2, correlationId });
-    const routingKey = `operation.${operation}`;
 
-    channel.publish(exchange_name, routingKey, Buffer.from(message_content), {
-      correlationId,
-    });
+    if (operation === "all") {
+      const operations = ["add", "sub", "mul", "div"];
+      for (const op of operations) {
+        const routingKey = `operation.${op}`;
+        channel.publish(
+          exchange_name,
+          routingKey,
+          Buffer.from(message_content),
+          {
+            correlationId,
+          }
+        );
+        console.log(
+          `[✓] Message publié sous "${routingKey}" => ${message_content}`
+        );
+      }
+    } else {
+      const routingKey = `operation.${operation}`;
+      channel.publish(exchange_name, routingKey, Buffer.from(message_content), {
+        correlationId,
+      });
+      console.log(
+        `[✓] Message publié sous "${routingKey}" => ${message_content}`
+      );
+    }
 
     await channel.close();
     await conn.close();
@@ -42,8 +62,4 @@ app.post("/api/send-operation", async (req, res) => {
     console.error("Erreur envoi RabbitMQ :", err);
     res.status(500).json({ message: "❌ Erreur interne." });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`🚀 API lancée sur http://localhost:${PORT}`);
 });
