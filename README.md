@@ -51,7 +51,8 @@ Notre projet se divise en 3 types de composants :
 
 ## Choix 1 : Initialisation du projet avec docker
 ``` cmd 
-cd  projet-rabbitmq 
+cd  projet-rabbitmq
+docker build ./
 docker compose -f Docker/docker-compose.yml up --build
 ```
 
