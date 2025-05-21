@@ -1,6 +1,17 @@
 # Projet-RabbitMQ
 Projet final du cours de RabbitMQ
 
+## Sommaire
+
+- [Présentation du projet](#présentation-du-projet)
+- [🎯 Objectif du projet](#-objectif-du-projet)
+- [🏙️ Architecture du projet](#-architecture-du-projet)
+- [💡 Technologies utilisées](#-technologies-utilisées)
+- [Choix 1 : Initialisation du projet avec docker](#choix-1--initialisation-du-projet-avec-docker)
+- [Choix 2 : Initialisation du projet](#choix-2--initialisation-du-projet)
+- [🛠️ Utilisation](#-utilisation)
+- [✨ Fonctionnalités implémentées](#-fonctionnalités-implémentées)
+- [🧑‍💻 Contributeurs](#-contributeurs)
 
 ## Présentation du projet
 
@@ -10,7 +21,7 @@ Chaque fournisseur est invité à proposer une preuve de concept sous forme d’
 
 Ce projet repond ainsi à cette demande.
 
-## Objectif du projet 
+## 🎯 Objectif du projet 
 
 L'objectif de ce projet est : 
 - Distribuer des tâches de calculs (all,add, div, mul, sub) via RabbitMQ
@@ -18,20 +29,7 @@ L'objectif de ce projet est :
 - Exécuter les calculs de manière distribuée
 - Récupérer et afficher les résultats dans une interface simple.
 
-## Sommaire
-
-- [Présentation du projet](#présentation-du-projet)
-- [🎯Objectif du projet](#objectif-du-projet)
-- [🏙️ Architecture du projet](#architecture-du-projet)
-- [💡 Technologies utilisées](#technologies-utilisées)
-- [Choix 1 : Initialisation du projet avec docker](#choix-1--initialisation-du-projet-avec-docker)
-- [Choix 2 : Initialisation du projet](#choix-2--initialisation-du-projet)
-- [🛠️ Utilisation](#utilisation)
-- [✨ Fonctionnalités implémentées](#fonctionnalités-implémentées)
-- [🧑‍💻 Contributeurs](#contributeurs)
-
-
-## Architecture du projet 
+## 🏙 Architecture du projet 
 
 Notre projet se divise en 3 types de composants : 
 
@@ -41,7 +39,7 @@ Notre projet se divise en 3 types de composants :
 
 ![alt text](./img/architecture.png)
 
-## Technologies utilisées 
+## 💡 Technologies utilisées 
 
 - **RabbitMQ** — Système de gestion de files de messages (AMQP)
 - **Node.js** — Environnement d'exécution JavaScript côté serveur
@@ -119,7 +117,7 @@ http://localhost:3000/
 
 ![alt text](./img/screen_front.png)
 
-## Utilisation
+## 🛠 Utilisation
 
 Une fois le système en place et tous les composants démarrés :
 
@@ -141,7 +139,7 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 
 Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 
-## Fonctionnalités implémentées
+## ✨ Fonctionnalités implémentées
 
 ### Fonctionnalités de base
 
@@ -165,7 +163,7 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 ✅ Affichage du formulaire de calcul
 ✅ Affichage du résultat de l'opération
 
-## Contributeurs
+## 🧑‍💻 Contributeurs
 - MANCEAU Arthur
 - BESROUR Rayane
 - KTOURZA Noemie
