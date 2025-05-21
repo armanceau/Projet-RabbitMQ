@@ -36,8 +36,11 @@ Notre projet se divise en 3 types de composants :
 - Websocket
 - Express
 
+## Choix 1 : Initialisation du projet avec docker :
 
-## Initialisation du projet
+``` docker compose -f Docker/docker-compose.yml up --build ```
+
+## Choix 2 : Initialisation du projet
 ```cmd
 cd projet-rabbitmq
 npm i 
