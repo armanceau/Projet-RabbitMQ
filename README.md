@@ -153,3 +153,8 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 ✅ Affichage du formulaire de calcul
 ✅ Affichage du résultat de l'opération
 
+## Contribueurs
+- MANCEAU Arthur
+- BESROUR Rayane
+- KTOURZA Noemie
+- LE FORMAL Guillaume
