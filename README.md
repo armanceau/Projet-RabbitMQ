@@ -21,14 +21,14 @@ L'objectif de ce projet est :
 ## Sommaire
 
 - [Présentation du projet](#présentation-du-projet)
-- [Objectif du projet](#objectif-du-projet)
-- [Architecture du projet](#architecture-du-projet)
-- [Technologies utilisées](#technologies-utilisées)
+- [🎯Objectif du projet](#objectif-du-projet)
+- [🏙️ Architecture du projet](#architecture-du-projet)
+- [💡 Technologies utilisées](#technologies-utilisées)
 - [Choix 1 : Initialisation du projet avec docker](#choix-1--initialisation-du-projet-avec-docker)
 - [Choix 2 : Initialisation du projet](#choix-2--initialisation-du-projet)
-- [Utilisation](#utilisation)
-- [✨ Fonctionnalités implémentées](#-fonctionnalités-implémentées)
-- [Contributeurs](#contribueurs)
+- [🛠️ Utilisation](#utilisation)
+- [✨ Fonctionnalités implémentées](#fonctionnalités-implémentées)
+- [🧑‍💻 Contributeurs](#contributeurs)
 
 
 ## Architecture du projet 
@@ -106,7 +106,6 @@ Lancer chaque worker :
 - [x] Multiplication (mul) node mul.js,
 - [x] Tous les workers (all) node all.js,
 
-
 ### Lancer le consumer : 
 ```cmd
 cd src
@@ -120,7 +119,7 @@ http://localhost:3000/
 
 ![alt text](./img/screen_front.png)
 
-## Utilisation 
+## Utilisation
 
 Une fois le système en place et tous les composants démarrés :
 
@@ -142,7 +141,7 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 
 Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 
-## ✨ Fonctionnalités implémentées*
+## Fonctionnalités implémentées
 
 ### Fonctionnalités de base
 
@@ -166,7 +165,7 @@ Pour arrêter chaque composant, utilisez Ctrl+C dans le terminal correspondant.
 ✅ Affichage du formulaire de calcul
 ✅ Affichage du résultat de l'opération
 
-## Contribueurs
+## Contributeurs
 - MANCEAU Arthur
 - BESROUR Rayane
 - KTOURZA Noemie
