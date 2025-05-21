@@ -17,7 +17,7 @@ services:
   #     context: ..
   #     dockerfile: Docker/Dockerfile
   #   container_name: producer
-  #   command: node src/producers/producer.js add 5 3 
+  #   command: node src/producers/producer.js 
   #   depends_on:
   #     - rabbitmq
   #   env_file:
