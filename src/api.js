@@ -63,3 +63,7 @@ app.post("/api/send-operation", async (req, res) => {
     res.status(500).json({ message: "❌ Erreur interne." });
   }
 });
+
+app.listen(PORT, () => {
+  console.log(`✅ Serveur API en écoute sur http://localhost:${PORT}`);
+});
