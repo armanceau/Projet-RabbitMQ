@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Résultats en direct</title>
+    <style>
+      #loader {
+        display: none;
+        font-weight: bold;
+        color: blue;
+        margin-top: 10px;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Envoyer un calcul</h1>
+    <p style="color: red; font-weight: ; font-style: italic">
+      ⚠️ Attention : le calcul est très complexe et peut prendre quelques
+      secondes avant d’afficher le résultat.
+    </p>
+    <form id="calcForm">
+      <input type="number" id="n1" placeholder="Nombre 1" required />
+      <input type="number" id="n2" placeholder="Nombre 2" required />
+      <select id="operation">
+        <option value="add">Addition</option>
+        <option value="sub">Soustraction</option>
+        <option value="mul">Multiplication</option>
+        <option value="div">Division</option>
+        <option value="all">Toutes</option>
+      </select>
+      <button type="submit">Envoyer</button>
+      <div id="loader">Calcul en cours, merci de patienter...</div>
+    </form>
+    <hr />
+    <h1>🧮 Résultats des calculs :</h1>
+    <ul id="results"></ul>
+
+    <script>
+      console.log("💡 Script WebSocket chargé");
+
+      const socket = new WebSocket("ws://localhost:8080");
+      const loader = document.getElementById("loader");
+      const submitButton = document.querySelector("button[type=submit]");
+
+      socket.onopen = () => {
+        console.log("✅ WebSocket connecté");
+      };
+
+      socket.onmessage = (event) => {
+        console.log("📨 Nouveau message :", event.data);
+        const li = document.createElement("li");
+        li.textContent = event.data;
+        document.getElementById("results").appendChild(li);
+
+        loader.style.display = "none";
+        submitButton.disabled = false;
+      };
+
+      socket.onerror = (err) => {
+        console.error("❌ WebSocket error:", err);
+        loader.style.display = "none";
+        submitButton.disabled = false;
+      };
+
+      document
+        .getElementById("calcForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          loader.style.display = "block";
+          submitButton.disabled = true;
+
+          const n1 = document.getElementById("n1").value;
+          const n2 = document.getElementById("n2").value;
+          const operation = document.getElementById("operation").value;
+
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/send-operation",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ n1, n2, operation }),
+              }
+            );
+
+            const data = await response.json();
+            console.log(data);
+          } catch (err) {
+            alert("Erreur lors de l'envoi : " + err.message);
+            loader.style.display = "none";
+            submitButton.disabled = false;
+          }
+        });
+    </script>
+  </body>
+</html>
