@@ -37,8 +37,10 @@ Notre projet se divise en 3 types de composants :
 - Express
 
 ## Choix 1 : Initialisation du projet avec docker :
-``` cd  projet-rabbitmq ```
-``` docker compose -f Docker/docker-compose.yml up --build ```
+``` cmd 
+cd  projet-rabbitmq 
+docker compose -f Docker/docker-compose.yml up --build
+```
 
 ## Choix 2 : Initialisation du projet
 ```cmd
