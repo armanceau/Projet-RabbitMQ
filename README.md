@@ -59,7 +59,7 @@ RABBITMQ_URL=amqp://exemple:exemple@hotsname.vhost:port
 _Vous pouvez prendre exemple sur `.env.example`_
 
 
-## Choix 1 : Initialisation du projet avec docker
+## Choix 1 : Initialisation du projet avec docker (Non fonctionelle ) 
 ``` cmd 
 cd  projet-rabbitmq
 docker compose -f Docker/docker-compose.yml up --build
