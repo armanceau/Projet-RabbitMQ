@@ -5,23 +5,22 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
-      - "5679:5679"     # port pour Serveur RabbitMQ AMQP
-      - "15679:15679"   # port pour UI Web
+      - "5679:5679"     # Port interne RabbitMQ AMQP
+      - "15679:15679"   # Port UI Web (accès localhost:15679)
     environment:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
 
-  # Décomenter ce bloc si vous voulez utiliser le producer à la place de l'api (ne pas oublier de commenter l'api) 
-  # producer:
-  #   build: 
-  #     context: ..
-  #     dockerfile: Docker/Dockerfile
-  #   container_name: producer
-  #   command: node src/producers/producer.js 
-  #   depends_on:
-  #     - rabbitmq
-  #   env_file:
-  #     - ../.env
+  producer:
+    build: 
+      context: ..
+      dockerfile: Docker/Dockerfile
+    container_name: producer
+    command: node src/producers/producer.js
+    depends_on:
+      - rabbitmq
+    env_file:
+      - ../.env
 
   consumer:
     build: 
@@ -75,19 +74,6 @@ services:
       dockerfile: Docker/Dockerfile
     container_name: worker_div
     command: node src/workers/div.js
-    depends_on:
-      - rabbitmq
-    env_file:
-      - ../.env
-  
-  api:
-    build:
-      context: ..
-      dockerfile: Docker/Dockerfile
-    working_dir: /app
-    ports:
-      - "3000:3000"
-    command: ["node", "src/api.js"]
     depends_on:
       - rabbitmq
     env_file:
